@@ -1,0 +1,25 @@
+{
+  "name": "moviefinder",
+  "version": "1.0.0",
+  "description": "A vanilla JS SPA movie web app",
+  "private": true,
+  "scripts": {
+    "cypress:open": "cypress open"
+  },
+  "keywords": [],
+  "author": "Ismail EB",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/plugin-transform-runtime": "^7.5.0",
+    "@babel/preset-env": "^7.5.4",
+    "babel-loader": "^8.0.6",
+    "cypress": "^3.3.1",
+    "eslint": "^6.0.1",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.4"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.4.5"
+  }
+}

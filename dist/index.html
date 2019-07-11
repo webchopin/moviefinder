@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>MovieFinder</title>
+    <meta name="description" content="Movie catalog: check the movies of the week, search for movies and view
+details about them">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- It's a good practice to protect a development project from robots -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="stylesheet" href="../main.css">
+    <link href="https://fonts.googleapis.com/css?family=Neuton&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <a href="#" data-js="home-link" class="logo__link" alt="Home">
+          <!-- A video camera icon: I use up to 4 icons - no need to overload the app with an icon set -->
+          <!-- An inline svg means fewer HTTP requests but also means it is not cached for subsequent requests -->
+          <!-- As I don't heavily use the svg in many pages and use only few svg images, it's okay to do this way -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="32" width="32" aria-hidden="true" fill="white"><path d="M16 7l4-4v14l-4-4v3a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v3zm-8 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-2a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+          <div class="logo__text">MovieFinder</div>
+        </a>
+       </div>
+       <div class="form-container">
+         <form data-js="movie-search" class="movie-form">
+           <div>
+             <!-- I used the search icon unicode in the placeholder, but the following search icon could be used
+             instead with some CSS to make a nice styling. -->
+             <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="18" width="18" aria-hidden="true"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg> -->
+             <label for="movie-search" class="sr-only">Search for a movie:</label>
+             <input type="text" id="movie-search" data-js="title" class="movie-form__input" placeholder="🔍 Looking for a movie ?">
+           </div>
+         </form>
+       </div>
+    </header>
+    <h1 class="site-title">MovieFinder: a quick way to find movies</h1>
+    <div class="attribution">
+      <img src="./tmdb_logo.png" alt="TMDB logo" class="attribution__logo">
+      <span class="attribution__text">
+        This product uses the TMDb API but is not endorsed or certified by TMDb.
+      </span>
+    </div>
+    <div data-js="page-indicator" class="page">In Theaters</div>
+    <div class="container">
+      <div data-js="movie-list" class="movie-list"></div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
