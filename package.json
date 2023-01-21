@@ -17,7 +17,7 @@
     "cypress": "^3.3.1",
     "eslint": "^6.0.1",
     "webpack": "^4.35.0",
-    "webpack-cli": "^3.3.4"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "@babel/runtime": "^7.4.5"
