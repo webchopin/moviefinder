@@ -19,9 +19,7 @@ export default class API {
     if (title) {
       return `${this._standardURL('/search/movie')}&query=${title}&page=${page}&include_adult=false`;
     }
-    else {
-      return this.inTheaters();
-    }
+    return this.inTheaters();
   }
   movie(id) {
     return this._standardURL(`/movie/${id}`);
