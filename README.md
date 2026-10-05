@@ -52,7 +52,7 @@ Enter the following in your command line:
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/ismaile7/moviefinder
+$ git clone https://github.com/webchopin/moviefinder
 
 # Go into the repository
 $ cd moviefinder
