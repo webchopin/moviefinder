@@ -93,4 +93,4 @@ MIT
 
 ---
 
-> Twitter [@ismaileb7](https://twitter.com/ismaileb7)
+> X [isma_eb](https://x.com/isma_eb)
