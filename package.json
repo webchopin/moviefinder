@@ -10,16 +10,16 @@
   "author": "Ismail EB",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.5.4",
-    "@babel/plugin-transform-runtime": "^7.5.0",
-    "@babel/preset-env": "^7.5.4",
-    "babel-loader": "^8.0.6",
+    "@babel/core": "^8.0.7",
+    "@babel/plugin-transform-runtime": "^8.0.6",
+    "@babel/preset-env": "^8.0.7",
+    "babel-loader": "^10.1.1",
     "cypress": "^16.1.1",
     "eslint": "^9.39.1",
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.10"
+    "@babel/runtime": "^8.0.7"
   }
 }
