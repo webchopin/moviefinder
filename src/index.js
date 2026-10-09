@@ -1,7 +1,7 @@
 import controller from './controller/index.js';
 import Movies from './components/movies.js';
 import PageIndicator from './components/pageindicator.js';
-import * as settings from './settings.json';
+import settings from './settings.json';
 
 let app = (function(){
   return {
@@ -26,7 +26,7 @@ let app = (function(){
         e.preventDefault();
       });
       title && title.addEventListener('input', function(e) {
-        controller.searchMovies(e.srcElement.value);
+        controller.searchMovies(e.target.value);
       });
     }
   };

@@ -1,6 +1,6 @@
 import {fetchApi} from '../utils.js';
 import store from '../store/index.js';
-import * as settings from '../settings.json';
+import settings from '../settings.json';
 
 export default class Controller {
   constructor(api) {
