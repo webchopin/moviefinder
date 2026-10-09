@@ -12,7 +12,7 @@ let app = (function(){
       new PageIndicator();
       new Movies();
       home && home.addEventListener('click', function() {
-        controller.switchToInTheathers();
+        controller.switchToInTheaters();
       });
       document.addEventListener('DOMContentLoaded', function() {
         controller.loadMovies();
