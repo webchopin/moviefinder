@@ -45,7 +45,7 @@ export default class Controller {
   }
   searchMovies(userInput) {
     if (!userInput) { // From non-empty to empty
-      this.switchToInTheathers();
+      this.switchToInTheaters();
     } else {
       store.state.loadingMore = false;
       store.initSearchState();
@@ -57,7 +57,7 @@ export default class Controller {
       },settings.search_delay);
     }
   }
-  switchToInTheathers() {
+  switchToInTheaters() {
     store.state.loadingMore = false;
     // No API call is triggered as we keep inTheaters in our store state
     // -> we could comment the next line
