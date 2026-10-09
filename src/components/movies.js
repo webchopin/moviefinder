@@ -45,7 +45,7 @@ export default class Movies {
   _addMovieToList(movie, genres) {
     return `
       <div class="movie" data-js="movie-${movie.id}">
-        <img class="movie__img" src=${movie.poster_path ? imageURL(movie.poster_path): 'http://placehold.it/200x300'} alt="Movie cover">
+        <img class="movie__img" src=${movie.poster_path ? imageURL(movie.poster_path): 'http://placehold.co/200x300'} alt="Movie cover">
         <div class="movie__information" data-js="movie-info">
           <strong class="movie__title">${movie.title}<span class="movie__release-year"> (${movie.release_date ? movie.release_date.substr(0,4): 'Unknown date'})</span></strong>
           <div class="movie__genres">${movie.genre_ids ? movie.genre_ids.map(id => `<span class="movie__genre">${genres[id]}</span>`).join(' | '): ''}</div>
