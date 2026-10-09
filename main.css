@@ -243,6 +243,7 @@ body {
 @media (max-width: 576px) {
   .video__player {
     width: 100%;
+    border: 0;
   }
 }
 
