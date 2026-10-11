@@ -18,7 +18,7 @@ let app = (function(){
         controller.loadMovies();
       });
       document.addEventListener('scroll', function(){
-        if (window.pageYOffset / document.documentElement.scrollHeight > settings.load_more_scroll_limit) {
+        if ((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight > settings.load_more_scroll_limit) {
           controller.loadMore();
         }
       });
