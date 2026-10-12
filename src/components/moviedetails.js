@@ -1,5 +1,6 @@
 import controller from '../controller/index.js';
 import store from '../store/index.js';
+import {escapeHTML} from '../utils.js';
 
 export default class MovieDetails {
   constructor(id) {
@@ -62,13 +63,13 @@ export default class MovieDetails {
     if (video.site === 'YouTube') {
       return `
         <div class="video__title">
-          ${video.name}
+          ${escapeHTML(video.name)}
         </div>
         <iframe
          class="video__player"
          width="560"
          height="315"
-         src="https://www.youtube.com/embed/${video.key}"
+         src="https://www.youtube.com/embed/${escapeHTML(video.key)}"
          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
          allowfullscreen>
          </iframe>
@@ -83,12 +84,12 @@ export default class MovieDetails {
           <div class="review__byauthor">
             <span>by </span>
             <span class="review__byauthor">
-              ${review.author}
+              ${escapeHTML(review.author)}
             </span>
             <span>:</span>
           </div>
           <blockquote class="review__text">
-            ${review.content}
+            ${escapeHTML(review.content)}
           </blockquote>
         </div>
       `
@@ -97,7 +98,7 @@ export default class MovieDetails {
   _addSimilarMoviesToDetails(similarMovies) {
     return `
       <div class="similar-movies__text">
-        ${similarMovies.length ? similarMovies.map(movie => movie.title).join(' | '): 'No similar movies found'}
+        ${similarMovies.length ? similarMovies.map(movie => escapeHTML(movie.title)).join(' | '): 'No similar movies found'}
       </div>
     `;
   }
