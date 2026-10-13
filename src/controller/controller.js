@@ -70,16 +70,19 @@ export default class Controller {
 
   async loadMovieDetails(id) {
     store.pubsub.publish('movieDetailsLoading', id);
-    let details = {id};
-    // If any video, taking the first one
-    const videos = await fetchApi(this.api.movieVideos(id));
-    details.video = videos.results && videos.results.length ? videos.results[0]: {};
-    // Taking up to 2 reviews
-    const reviews = await fetchApi(this.api.movieReviews(id));
-    details.reviews = reviews.results ? reviews.results.slice(0,2) : [];
-    // Taking up to 4 similar movies
-    const similar = await fetchApi(this.api.movieSimilar(id));
-    details.similar = similar.results ? similar.results.slice(0,4) : [];
-    store.pubsub.publish('movieDetailsUpdated', details);
+
+    const [videos, reviews, similar] = (await Promise.allSettled([
+      fetchApi(this.api.movieVideos(id)),
+      fetchApi(this.api.movieReviews(id)),
+      fetchApi(this.api.movieSimilar(id)),
+    ])).map(result => (result.status === 'fulfilled' ? result.value : {}));
+    
+    // Taking the first movie if any, taking up to 2 reviews, taking up to 4 similar movies
+    store.pubsub.publish('movieDetailsUpdated', {
+      id,
+      video: videos.results?.[0] ?? {},
+      reviews: reviews.results?.slice(0,2) ?? [],
+      similar: similar.results?.slice(0,4) ?? [],
+    });
   }
 }
