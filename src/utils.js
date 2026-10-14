@@ -15,5 +15,5 @@ export async function fetchApi (url, options = {}){
 const HTML_ESCAPES = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'};
 
 export function escapeHTML(value = '') {
-  return String(value).replace(/[&<>"'"]/g, character => HTML_ESCAPES[character]);
+  return String(value).replace(/[&<>"']/g, character => HTML_ESCAPES[character]);
 }

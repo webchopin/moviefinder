@@ -31,7 +31,7 @@ export default class MovieDetails {
   }
 
   render(movie) {
-    if (this.id != movie.id) return;
+    if (this.id !== movie.id) return;
     this.element.classList.add('d-none');
     const video = this._addVideoToDetails(movie.video);
     const reviews = this._addReviewsToDetails(movie.reviews);
@@ -51,7 +51,7 @@ export default class MovieDetails {
     this._showAnimation();
   }
   startSpinner(movieId) {
-    if (this.id != movieId) return;
+    if (this.id !== movieId) return;
     this.element.classList.remove('d-none');
     this.element.innerHTML = `
       <div class="loading">
