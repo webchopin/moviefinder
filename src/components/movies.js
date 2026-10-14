@@ -49,7 +49,7 @@ export default class Movies {
         <div class="movie__information" data-js="movie-info">
           <strong class="movie__title">${escapeHTML(movie.title)}<span class="movie__release-year"> (${movie.release_date ? movie.release_date.substr(0,4): 'Unknown date'})</span></strong>
           <div class="movie__genres">${movie.genre_ids ? movie.genre_ids.map(id => `<span class="movie__genre">${genres[id]}</span>`).join(' | '): ''}</div>
-          <div class="movie__vote-line">Average vote: <span class="movie__vote">${movie.vote_average}</span></div>
+          <div class="movie__vote-line">Average vote: <span class="movie__vote">${movie.vote_average.toFixed(1)}</span></div>
           <div class="movie__overview">${escapeHTML(movie.overview)}</div>
           <button class="expand" aria-label="More details">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="48" width="48" fill="#333" class="expand__icon" aria-hidden="true"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>
