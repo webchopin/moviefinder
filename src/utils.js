@@ -1,4 +1,4 @@
-import settings from './settings.json';
+import settings from './settings.js';
 
 export function imageURL(path) {
   return `${settings.img_base_url}${path}`;

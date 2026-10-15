@@ -1,3 +1,5 @@
+const Dotenv = require('dotenv-webpack');
+
 module.exports = {
   mode: 'development',
   module: {
@@ -16,5 +18,8 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new Dotenv({safe: true, systemvars: true}),
+  ],
 }
