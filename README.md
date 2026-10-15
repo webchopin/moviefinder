@@ -61,24 +61,27 @@ cd moviefinder
 npm install
 ```
 
-Copy `.env.example`to `.env` and set your API key:
+Copy `.env.example` to `.env` and set your API key:
 
 ```bash
 cp .env.example .env
 ```
 ```
-TMDB_API_KEY=your_api_key
+VITE_TMDB_API_KEY=your_api_key
 ```
 
-Build the web app:
+Start the development server:
 
 ```bash
-npx webpack
+npm run dev
 ```
 
-To run the web app, open `dist/index.html` in your browser.
+To build and preview the production version:
 
-If you update the code in `src` or your `.env`, run `npx webpack` again.
+```bash
+npm run build
+npm run preview
+```
 
 ## How To Test
 

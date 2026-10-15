@@ -1,3 +1,4 @@
+import './styles/main.css';
 import controller from './controller/index.js';
 import Movies from './components/movies.js';
 import PageIndicator from './components/pageindicator.js';
