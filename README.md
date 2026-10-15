@@ -46,26 +46,39 @@ This can serve as a specification:
 
 ## How To Set Up
 
-For the API to work, you need to request an API key from TDMB. Check `How do I apply for an API key?` [here](https://www.themoviedb.org/faq/api) for more information.
+For the API to work, you need to request an API key from TMDB. Check `How do I apply for an API key?` [here](https://www.themoviedb.org/faq/api) for more information.
 
 Enter the following in your command line:
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/webchopin/moviefinder
+git clone https://github.com/webchopin/moviefinder
 
 # Go into the repository
-$ cd moviefinder
+cd moviefinder
 
 # Install dependencies
-$ npm install
+npm install
 ```
 
-Enter your API key in `src/settings.json`
+Copy `.env.example`to `.env` and set your API key:
+
+```bash
+cp .env.example .env
+```
+```
+TMDB_API_KEY=your_api_key
+```
+
+Build the web app:
+
+```bash
+npx webpack
+```
 
 To run the web app, open `dist/index.html` in your browser.
 
-If you update the code in `src`, you need to run `npx webpack`
+If you update the code in `src` or your `.env`, run `npx webpack` again.
 
 ## How To Test
 
@@ -75,7 +88,7 @@ The web app uses Cypress.
 
 Once you have installed the web app, you can run:
 ```bash
-$ npm run cypress:open
+npm run cypress:open
 ```
 
 ## Credits
