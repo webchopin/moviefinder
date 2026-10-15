@@ -46,7 +46,7 @@ This can serve as a specification:
 
 ## How To Set Up
 
-For the API to work, you need to request an API key from TDMB. Check `How do I apply for an API key?` [here](https://www.themoviedb.org/faq/api) for more information.
+For the API to work, you need to request an API key from TMDB. Check `How do I apply for an API key?` [here](https://www.themoviedb.org/faq/api) for more information.
 
 Enter the following in your command line:
 
