@@ -1,7 +1,7 @@
 import controller from './controller/index.js';
 import Movies from './components/movies.js';
 import PageIndicator from './components/pageindicator.js';
-import settings from './settings.json';
+import settings from './settings.js';
 
 let app = (function(){
   return {
