@@ -52,13 +52,13 @@ Enter the following in your command line:
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/webchopin/moviefinder
+git clone https://github.com/webchopin/moviefinder
 
 # Go into the repository
-$ cd moviefinder
+cd moviefinder
 
 # Install dependencies
-$ npm install
+npm install
 ```
 
 Enter your API key in `src/settings.json`
@@ -75,7 +75,7 @@ The web app uses Cypress.
 
 Once you have installed the web app, you can run:
 ```bash
-$ npm run cypress:open
+npm run cypress:open
 ```
 
 ## Credits
