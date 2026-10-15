@@ -9,7 +9,6 @@ details about them">
     <!-- It's a good practice to protect a development project from robots -->
     <meta name="robots" content="noindex, nofollow">
 
-    <link rel="stylesheet" href="../main.css">
     <link href="https://fonts.googleapis.com/css?family=Neuton&display=swap" rel="stylesheet">
   </head>
   <body>
@@ -37,7 +36,7 @@ details about them">
     </header>
     <h1 class="site-title">MovieFinder: a quick way to find movies</h1>
     <div class="attribution">
-      <img src="./tmdb_logo.png" alt="TMDB logo" class="attribution__logo">
+      <img src="/tmdb_logo.png" alt="TMDB logo" class="attribution__logo">
       <span class="attribution__text">
         This product uses the TMDb API but is not endorsed or certified by TMDb.
       </span>
@@ -46,6 +45,6 @@ details about them">
     <div class="container">
       <div data-js="movie-list" class="movie-list"></div>
     </div>
-    <script src="main.js"></script>
+    <script type="module" src="/src/index.js"></script>
   </body>
 </html>
