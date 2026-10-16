@@ -1,6 +1,6 @@
 describe('Home - General', function() {
   before(function() {
-    cy.visit('/dist/index.html');
+    cy.visit('/');
   });
   it('has the site logo', function() {
     cy.get('.logo').should('exist');

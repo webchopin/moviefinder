@@ -1,6 +1,6 @@
 describe('Movie - basic information', function() {
   before(function() {
-    cy.visit('/dist/index.html');
+    cy.visit('/');
     cy.get('[data-js=movie-list]').children().should('have.length', 20);
   });
   it('shows an image', function() {
@@ -25,7 +25,7 @@ describe('Movie - basic information', function() {
 
 describe('Movie - details', function() {
   before(function() {
-    cy.visit('/dist/index.html');
+    cy.visit('/');
     cy.get('[data-js=movie-list]').children().should('have.length', 20);
   });
   describe('Click to show details', function() {

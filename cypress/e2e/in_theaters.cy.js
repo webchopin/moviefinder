@@ -1,6 +1,6 @@
 describe('In Theaters - Home', function() {
   beforeEach(function() {
-    cy.visit('/dist/index.html');
+    cy.visit('/');
   });
   it('shows In Theaters page', function() {
     cy.get('[data-js=page-indicator]').should('contain', 'In Theaters');
@@ -19,7 +19,7 @@ describe('In Theaters - Home', function() {
 
 describe('In Theaters - Load More', function() {
   before(function() {
-    cy.visit('/dist/index.html');
+    cy.visit('/');
     cy.get('[data-js=movie-list]').children().should('have.length', 20);
     cy.scrollTo('bottom');
   });
