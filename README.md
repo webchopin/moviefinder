@@ -85,11 +85,27 @@ npm run preview
 
 ## How To Test
 
-E2E testing is used in this web app.
+E2E testing is used in this web app with [Cypress](https://www.cypress.io/).
 
-The web app uses Cypress.
+The tests call the TMDB API, so make sure your API key is set in `.env` (see [How To Set Up](#how-to-set-up)).
 
-Once you have installed the web app, you can run:
+To run all the tests from the command line:
+
+```bash
+npm run test:e2e
+```
+
+This builds the web app, starts the preview server, runs the tests and stops the server.
+
+To run the tests interactively in the Cypress app, build and start the preview server first:
+
+```bash
+npm run build
+npm run preview
+```
+
+Then, in another terminal:
+
 ```bash
 npm run cypress:open
 ```

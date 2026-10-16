@@ -1,6 +1,6 @@
 describe('Search - Home', function() {
   before(function() {
-    cy.visit('/dist/index.html');
+    cy.visit('/');
     cy.get('[data-js=title]').type('batman');
   });
   it('shows Results page', function() {
@@ -32,7 +32,7 @@ describe('Search - Home', function() {
 
 describe('Search - Load More', function() {
   before(function() {
-    cy.visit('/dist/index.html');
+    cy.visit('/');
     cy.get('[data-js=title]').type('superman');
     // To avoid unnecessary API calls for each character of the input,
     // we use a delay, so here we have to wait a bit before scrolling
