@@ -1,5 +1,8 @@
+import { mockTmdb } from "../support/tmdb.js";
+
 describe('In Theaters - Home', function() {
   beforeEach(function() {
+    mockTmdb({ delay: 300 });
     cy.visit('/');
   });
   it('shows In Theaters page', function() {
@@ -18,7 +21,8 @@ describe('In Theaters - Home', function() {
 });
 
 describe('In Theaters - Load More', function() {
-  before(function() {
+  beforeEach(function() {
+    mockTmdb({ delay: 300 });
     cy.visit('/');
     cy.get('[data-js=movie-list]').children().should('have.length', 20);
     cy.scrollTo('bottom');

@@ -1,5 +1,8 @@
+import { mockTmdb } from "../support/tmdb.js";
+
 describe('Home - General', function() {
-  before(function() {
+  beforeEach(function() {
+    mockTmdb();
     cy.visit('/');
   });
   it('has the site logo', function() {
