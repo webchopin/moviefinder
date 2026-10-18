@@ -60,9 +60,6 @@ export default class Controller {
   }
   switchToInTheaters() {
     store.state.loadingMore = false;
-    // No API call is triggered as we keep inTheaters in our store state
-    // -> we could comment the next line
-    store.pubsub.publish('moviesLoading');
     store.initSearchState();
     store.state.searchInput = '';
     store.state.searchMode = false;
