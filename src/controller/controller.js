@@ -22,6 +22,7 @@ export default class Controller {
     return genres;
   }
   async loadMovies() {
+    store.state.loadLocked = true;
     store.pubsub.publish('moviesLoading');
     const moviesJson = await fetchApi(store.state.searchInput ? this.api.search(store.state.searchInput, store.state.search.currentPage): this.api.inTheaters(store.state.inTheaters.currentPage));
     if (store.state.searchInput) {
