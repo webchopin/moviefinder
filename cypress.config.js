@@ -6,7 +6,4 @@ module.exports = defineConfig({
         specPattern: 'cypress/e2e/**/*.cy.js',
         supportFile: false,
     },
-    env: {
-        search_delay: 300,
-    },
 });

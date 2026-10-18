@@ -1,5 +1,8 @@
+import { mockTmdb } from "../support/tmdb.js";
+
 describe('Movie - basic information', function() {
-  before(function() {
+  beforeEach(function() {
+    mockTmdb();
     cy.visit('/');
     cy.get('[data-js=movie-list]').children().should('have.length', 20);
   });
@@ -24,14 +27,14 @@ describe('Movie - basic information', function() {
 });
 
 describe('Movie - details', function() {
-  before(function() {
+  beforeEach(function() {
+    mockTmdb();
     cy.visit('/');
     cy.get('[data-js=movie-list]').children().should('have.length', 20);
+    cy.get('.movie:first-of-type .expand').click();
+    cy.wait(['@videos', '@reviews', '@similar']);
   });
   describe('Click to show details', function() {
-    before(function() {
-      cy.get('.movie:first-of-type .expand').click();
-    })
     it('shows a video', function() {
       cy.get('.video').should('be.visible');
     });
@@ -43,7 +46,7 @@ describe('Movie - details', function() {
     });
   });
   describe('Click to hide details', function() {
-    before(function() {
+    beforeEach(function() {
       cy.get('.movie:first-of-type .minimize').click();
     });
     it('hides the video', function() {

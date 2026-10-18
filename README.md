@@ -87,8 +87,6 @@ npm run preview
 
 E2E testing is used in this web app with [Cypress](https://www.cypress.io/).
 
-The tests call the TMDB API, so make sure your API key is set in `.env` (see [How To Set Up](#how-to-set-up)).
-
 To run all the tests from the command line:
 
 ```bash
