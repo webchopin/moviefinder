@@ -1,36 +1,27 @@
 import { mockTmdb } from "../support/tmdb.js";
 
-describe('In Theaters - Home', function() {
+describe('In Theaters', function() {
   beforeEach(function() {
     mockTmdb({ delay: 300 });
     cy.visit('/');
   });
-  it('shows In Theaters page', function() {
+  it('loads the movies', function(){
     cy.get('[data-js=page-indicator]').should('contain', 'In Theaters');
-  });
-  it('has no movies at the beginning', function() {
-    cy.get('[data-js=movie-list]').children({timeout:0}).should('have.length', 0);
-  });
-  it('shows a loading spinner', function() {
     cy.get('.loading').should('exist');
-  });
-  it('shows 20 movies', function() {
+    cy.get('[data-js=movie-list]').children().should('have.length', 0);
+
+    cy.wait('@inTheaters');
     cy.get('[data-js=movie-list]').children().should('have.length', 20);
     cy.get('.loading').should('not.exist');
   });
-});
-
-describe('In Theaters - Load More', function() {
-  beforeEach(function() {
-    mockTmdb({ delay: 300 });
-    cy.visit('/');
+  it('loads 20 more on scroll', function(){
+    cy.wait('@inTheaters');
     cy.get('[data-js=movie-list]').children().should('have.length', 20);
+
     cy.scrollTo('bottom');
-  });
-  it('shows a loading spinner', function() {
     cy.get('.loading').should('exist');
-  });
-  it('loads 20 more movies', function() {
+    cy.wait('@inTheaters');
     cy.get('[data-js=movie-list]').children().should('have.length', 40);
+    cy.get('.loading').should('not.exist');
   });
 });
