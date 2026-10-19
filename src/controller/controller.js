@@ -33,7 +33,7 @@ export default class Controller {
     store.pubsub.publish('moviesUpdated');
     // Loading more and searching for a new movie at the same time might cause issues.
     // The lock is not used when searching for movies, it might be used there but it would need further reflexion.
-    store.state.loadLocked = false; // eslint-disable-line require-atomic-updates
+    store.state.loadLocked = false;
   }
   loadMore() {
     // Avoid multiple loads when scrolling to the bottom

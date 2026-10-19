@@ -11,7 +11,7 @@ export default class Store {
   */
   async getGenres() {
     let genres;
-    if (!this.state.hasOwnProperty('genres')) { // eslint-disable-line no-prototype-builtins
+    if (!Object.hasOwn(this.state, 'genres')) {
       this.state.genres = {};
     }
     if (Object.keys(this.state.genres).length !== 0) {

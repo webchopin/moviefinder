@@ -3,14 +3,14 @@ export default class PubSub {
     this.topics = {};
   }
   subscribe(topic, callback) {
-    if (!this.topics.hasOwnProperty(topic)) { // eslint-disable-line no-prototype-builtins
+    if (!Object.hasOwn(this.topics, topic)) {
       this.topics[topic] = [];
     }
     return this.topics[topic].push(callback);
   }
 
   publish(topic, data = {}) {
-    if (!this.topics.hasOwnProperty(topic)) { // eslint-disable-line no-prototype-builtins
+    if (!Object.hasOwn(this.topics, topic)) {
       return [];
     }
     return this.topics[topic].map(callback => callback(data));
