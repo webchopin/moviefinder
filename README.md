@@ -113,7 +113,7 @@ npm run cypress:open
 This web app uses the following open source packages:
 
 - [ESLint](https://eslint.org/)
-- [Webpack](https://webpack.js.org/)
+- [Vite](https://vite.dev/)
 - [Cypress](https://www.cypress.io/)
 - Icons are taken from [Zondicons](http://www.zondicons.com/)
 
