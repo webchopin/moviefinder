@@ -108,6 +108,12 @@ Then, in another terminal:
 npm run cypress:open
 ```
 
+The code is also checked with [ESLint](https://eslint.org/):
+
+```bash
+npm run lint
+```
+
 ## Credits
 
 This web app uses the following open source packages:
