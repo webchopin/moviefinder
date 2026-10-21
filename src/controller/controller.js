@@ -21,6 +21,18 @@ export default class Controller {
     }
     return genres;
   }
+  // Get the genres from the state, then localStorage, then the API
+  async getGenres() {
+    if (store.state.genres && Object.keys(store.state.genres).length !== 0) {
+      return store.state.genres;
+    }
+    const cachedGenres = localStorage.getItem('genres');
+    if (cachedGenres !== null) {
+      store.state.genres = JSON.parse(cachedGenres);
+      return store.state.genres;
+    }
+    return this.loadGenres();
+  }
   async loadMovies() {
     store.state.loadLocked = true;
     store.pubsub.publish('moviesLoading');

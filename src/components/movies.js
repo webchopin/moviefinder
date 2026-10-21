@@ -1,4 +1,5 @@
 import {imageURL, escapeHTML} from '../utils.js';
+import controller from '../controller/index.js';
 import store from '../store/index.js';
 import MovieDetails from './moviedetails.js';
 
@@ -37,7 +38,7 @@ export default class Movies {
   }
 
   async _updateMovieList() {
-    const genres = await store.getGenres();
+    const genres = await controller.getGenres();
     this.element.innerHTML = this.movies.map(movie => this._addMovieToList(movie, genres)).join('');
     this.movies.forEach(movie => new MovieDetails(movie.id));
   }
