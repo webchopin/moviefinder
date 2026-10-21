@@ -34,10 +34,18 @@ export default class Controller {
     return this.loadGenres();
   }
   async loadMovies() {
+    const searchInput = store.state.searchInput;
     store.state.loadLocked = true;
     store.pubsub.publish('moviesLoading');
-    const moviesJson = await fetchApi(store.state.searchInput ? this.api.search(store.state.searchInput, store.state.search.currentPage): this.api.inTheaters(store.state.inTheaters.currentPage));
-    if (store.state.searchInput) {
+    const [moviesJson] = await Promise.all([
+      fetchApi(searchInput ? this.api.search(searchInput, store.state.search.currentPage): this.api.inTheaters(store.state.inTheaters.currentPage)),
+      this.getGenres(),
+    ]);
+    // The input changed while loading (e.g. cleared): these results are outdated
+    if (searchInput !== store.state.searchInput) {
+      return;
+    }
+    if (searchInput) {
       store.state.search.movies.push(...moviesJson.results);
     } else {
       store.state.inTheaters.movies.push(...moviesJson.results);
@@ -75,6 +83,7 @@ export default class Controller {
     store.initSearchState();
     store.state.searchInput = '';
     store.state.searchMode = false;
+    store.state.loadLocked = false;
     store.pubsub.publish('moviesUpdated');
   }
 
