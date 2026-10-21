@@ -15,14 +15,15 @@ let app = (function(){
       home && home.addEventListener('click', function() {
         controller.switchToInTheaters();
       });
-      document.addEventListener('DOMContentLoaded', function() {
-        controller.loadMovies();
-      });
-      document.addEventListener('scroll', function(){
-        if ((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight > settings.load_more_scroll_limit) {
+      controller.loadMovies();
+      const loadMore = document.querySelector('[data-js=load-more]');
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
           controller.loadMore();
         }
-      });
+      }, { root: document, rootMargin: `0px 0px ${settings.load_more_margin} 0px` });
+      observer.observe(loadMore);
+
       searchForm && searchForm.addEventListener('submit', function(e) {
         e.preventDefault();
       });
