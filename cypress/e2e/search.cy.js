@@ -16,6 +16,7 @@ describe('Search', function() {
     cy.get('.loading').should('not.exist');
   });
   it('loads 20 more results on scroll', function() {
+    cy.get('[data-js=movie-list]').children().should('have.length', 20);
     cy.scrollTo('bottom');
     cy.wait('@search');
     cy.get('[data-js=movie-list]').children().should('have.length', 40);
