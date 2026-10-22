@@ -28,9 +28,11 @@ export function mockTmdb({ delay = 0 } = {}) {
         req.reply({ body: moviePage(Number(req.query.page), 1000), delay });
     }).as('search');
 
-    cy.intercept('GET', '**/movie/*/videos*', { results : [{ site: 'YouTube', key: 'abc', name: 'Trailer' }] }).as('videos');
-    cy.intercept('GET', '**/movie/*/reviews*', { results : [{ author: 'Jane', content: 'Great movie' }] }).as('reviews');
-    cy.intercept('GET', '**/movie/*/similar*', { results : [movie(9001), movie(9002)] }).as('similar');
+    cy.intercept('GET', /\/movie\/\d+\?/, {
+        videos: { results: [{ site: 'YouTube', key: 'abc', name: 'Trailer' }] },
+        reviews: { results: [{ author: 'Jane', content: 'Great movie' }] },
+        similar: { results: [movie(9001), movie(9002)] }
+    }).as('movieDetails');
 
     cy.intercept('GET', 'https://image.tmdb.org/**', { statusCode : 204 });
     cy.intercept('GET', 'https://www.youtube.com/embed/**', '<html></html>');

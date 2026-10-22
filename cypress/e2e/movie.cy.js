@@ -19,7 +19,7 @@ describe('Movie', function() {
   });
   it('shows then hides the details', function() {
     cy.get('.movie:first-of-type .expand').click();
-    cy.wait(['@videos', '@reviews', '@similar']);
+    cy.wait('@movieDetails');
     cy.get('.video').should('be.visible').and('contain', 'Trailer');
     cy.get('.reviews').should('be.visible').and('contain', 'Jane').and('contain', 'Great movie');
     cy.get('.similar-movies').should('be.visible').and('contain', 'Movie 9001');
