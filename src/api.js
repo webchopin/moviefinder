@@ -24,13 +24,7 @@ export default class API {
   movie(id) {
     return this._standardURL(`/movie/${id}`);
   }
-  movieVideos(id) {
-    return this._standardURL(`/movie/${id}/videos`);
-  }
-  movieReviews(id) {
-    return this._standardURL(`/movie/${id}/reviews`);
-  }
-  movieSimilar(id) {
-    return this._standardURL(`/movie/${id}/similar`);
+  movieDetails(id) {
+    return `${this.movie(id)}&append_to_response=videos,reviews,similar`;
   }
 }
