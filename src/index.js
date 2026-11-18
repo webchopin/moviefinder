@@ -24,8 +24,12 @@ let app = (function(){
         }
       }, { root: document, rootMargin: `0px 0px ${settings.load_more_margin} 0px` });
       observer.observe(loadMore);
-      // Drop intersections measured before the list was updated, so they can't trigger a load more
-      store.pubsub.subscribe('moviesUpdated', () => observer.takeRecords());
+      // The observer only reports changes. If the sentinel was already in view while the list
+      // was loading, nothing would trigger a load more: observe it again to measure it once again.
+      store.pubsub.subscribe('moviesUpdated', () => {
+        observer.unobserve(loadMore);
+        observer.observe(loadMore);
+      });
 
       searchForm && searchForm.addEventListener('submit', function(e) {
         e.preventDefault();

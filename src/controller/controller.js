@@ -45,11 +45,9 @@ export default class Controller {
     if (searchInput !== store.state.searchInput) {
       return;
     }
-    if (searchInput) {
-      store.state.search.movies.push(...moviesJson.results);
-    } else {
-      store.state.inTheaters.movies.push(...moviesJson.results);
-    }
+    const list = searchInput ? store.state.search : store.state.inTheaters;
+    list.movies.push(...moviesJson.results);
+    list.totalPages = moviesJson.total_pages;
     store.pubsub.publish('moviesUpdated');
     // Loading more and searching for a new movie at the same time might cause issues.
     // The lock is not used when searching for movies, it might be used there but it would need further reflexion.
@@ -57,10 +55,11 @@ export default class Controller {
   }
   loadMore() {
     // Avoid multiple loads when scrolling to the bottom
-    if (!store.state.loadLocked) {
+    const list = store.state.searchMode ? store.state.search : store.state.inTheaters;
+    if (!store.state.loadLocked && list.currentPage < list.totalPages) {
       store.state.loadingMore = true;
       store.state.loadLocked = true;
-      store.state.searchMode ? store.state.search.currentPage++ : store.state.inTheaters.currentPage++;
+      list.currentPage++;
       this.loadMovies();
     }
   }

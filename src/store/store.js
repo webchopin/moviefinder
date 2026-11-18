@@ -7,7 +7,7 @@ export default class Store {
   }
 
   initSearchState() {
-    this.state.search = {currentPage: 1, movies: []};
+    this.state.search = {currentPage: 1, totalPages: 0, movies: []};
     this.state.searchMode = true;
   }
 }
