@@ -9,7 +9,9 @@ describe('Movie', function() {
   });
   it('shows the basic information', function() {
     cy.get('.movie:first-of-type').within(function(){
-      cy.get('.movie__img').should('exist');
+      cy.get('.movie__img')
+        .should('have.attr', 'alt', 'Poster of Movie 1')
+        .and('have.attr', 'loading', 'lazy');
       cy.get('.movie__title').should('contain', 'Movie 1');
       cy.get('.movie__release-year').should('contain', '2026');
       cy.get('.movie__genres').should('contain', 'Action');
