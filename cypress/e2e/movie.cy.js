@@ -23,6 +23,7 @@ describe('Movie', function() {
     cy.get('.movie:first-of-type .expand').click();
     cy.wait('@movieDetails');
     cy.get('.video').should('be.visible').and('contain', 'Trailer');
+    cy.get('.video__player').should('have.attr', 'title', 'Trailer');
     cy.get('.reviews').should('be.visible').and('contain', 'Jane').and('contain', 'Great movie');
     cy.get('.similar-movies').should('be.visible').and('contain', 'Movie 9001');
 

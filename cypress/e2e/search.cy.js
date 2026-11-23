@@ -30,7 +30,10 @@ describe('Search', function() {
     cy.get('.loading').should('not.exist');
   });
   it('goes back to In Theater when the home link is clicked', function() {
+    cy.window().then(win => { win.notReloaded = true; });
     cy.get('[data-js=home-link]').click();
+    cy.window().should('have.prop', 'notReloaded', true);
+    cy.location('href').should('eq', `${Cypress.config('baseUrl')}/`);
     cy.get('[data-js=page-indicator]').should('contain', 'In Theaters');
     cy.get('[data-js=movie-list]').children().should('have.length', 20);
     cy.get('.loading').should('not.exist');

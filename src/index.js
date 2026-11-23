@@ -13,7 +13,8 @@ let app = (function(){
       const title = document.querySelector('[data-js=title]');
       new PageIndicator();
       new Movies();
-      home && home.addEventListener('click', function() {
+      home && home.addEventListener('click', function(e) {
+        e.preventDefault();
         controller.switchToInTheaters();
       });
       controller.loadMovies();
