@@ -14,7 +14,7 @@ details about them">
   <body>
     <header class="header">
       <div class="logo">
-        <a href="#" data-js="home-link" class="logo__link" alt="Home">
+        <a href="/" data-js="home-link" class="logo__link">
           <!-- A video camera icon: I use up to 4 icons - no need to overload the app with an icon set -->
           <!-- An inline svg means fewer HTTP requests but also means it is not cached for subsequent requests -->
           <!-- As I don't heavily use the svg in many pages and use only few svg images, it's okay to do this way -->
@@ -29,7 +29,7 @@ details about them">
              instead with some CSS to make a nice styling. -->
              <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="18" width="18" aria-hidden="true"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg> -->
              <label for="movie-search" class="sr-only">Search for a movie:</label>
-             <input type="text" id="movie-search" data-js="title" class="movie-form__input" placeholder="🔍 Looking for a movie ?">
+             <input type="search" id="movie-search" data-js="title" class="movie-form__input" placeholder="🔍 Looking for a movie ?">
            </div>
          </form>
        </div>

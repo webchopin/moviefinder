@@ -67,6 +67,7 @@ export default class MovieDetails {
         </div>
         <iframe
          class="video__player"
+         title="${escapeHTML(video.name)}"
          width="560"
          height="315"
          src="https://www.youtube.com/embed/${escapeHTML(video.key)}"

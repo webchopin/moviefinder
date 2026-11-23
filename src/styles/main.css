@@ -64,6 +64,7 @@ body {
   border-radius: 1em;
   border: 2px solid #555;
   height: 36px;
+  appearance: none;
 }
 
 .movie-form__input::placeholder {
