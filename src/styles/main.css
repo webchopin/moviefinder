@@ -75,7 +75,9 @@ body {
 .movie-form__input:focus {
   border: 2px solid #f7baa2;
   border-radius: 15px;
-  outline: none;
+  /* The border color shows the focus. A transparent outline, unlike none, still shows
+     in forced colors mode (e.g. Windows high contrast), where border colors are replaced */
+  outline: 2px solid transparent;
 }
 
 /* Title h1 */
@@ -189,7 +191,7 @@ body {
 
 /* Movie - details */
 
-.expand, .minimize {
+.toggle-details {
   cursor: pointer;
   background: none;
   border: none;
@@ -197,12 +199,21 @@ body {
   margin: 1em auto;
 }
 
-.expand:focus, .minimize:focus {
-  outline: none;
+/* Only for keyboard focus: a mouse click doesn't show the ring */
+.toggle-details:focus-visible {
+  outline: 2px solid var(--main-color);
+  outline-offset: 2px;
+  border-radius: 50%;
 }
 
-.expand__icon:hover, .minimize__icon:hover {
+.toggle-details__icon:hover {
   transform: scale(1.2);
+}
+
+/* Show + when the details are closed, and × when they are open */
+.toggle-details[aria-expanded="true"] .toggle-details__icon--expand,
+.toggle-details[aria-expanded="false"] .toggle-details__icon--collapse {
+  display: none;
 }
 
 .movie__details {

@@ -9,25 +9,31 @@ export default class MovieDetails {
     this.element = document.querySelector(`[data-js=movie-${id}] [data-js=details]`);
     this.id = id;
 
-    this.expand = document.querySelector(`[data-js=movie-${id}] .expand`);
-    this.minimize = document.querySelector(`[data-js=movie-${id}] .minimize`);
-    this._initClickListeners();
+    this.toggle = document.querySelector(`[data-js=movie-${id}] [data-js=toggle-details]`);
+    this._initClickListener();
   }
 
-  _initClickListeners() {
-    this.expand.addEventListener('click', () => {
-      if (this.element.childElementCount === 0) {
+  _initClickListener() {
+    this.toggle.addEventListener('click', () => {
+      if (this._isExpanded()) {
+        this._hideAnimation();
+      } else if (this.element.childElementCount === 0) {
         // Load content and show spinner before loading
+        this._setExpanded(true);
         controller.loadMovieDetails(this.id);
       } else {
-        // Show animation when expand is used again after details are loaded
+        // Show animation when the details are opened again after they are loaded
         this._showAnimation();
       }
     });
+  }
 
-    this.minimize.addEventListener('click', () => {
-      this._hideAnimation();
-    });
+  // aria-expanded holds the state: screen readers announce it, and the CSS shows the matching icon
+  _isExpanded() {
+    return this.toggle.getAttribute('aria-expanded') === 'true';
+  }
+  _setExpanded(expanded) {
+    this.toggle.setAttribute('aria-expanded', String(expanded));
   }
 
   render(movie) {
@@ -48,7 +54,10 @@ export default class MovieDetails {
       </div>
     `;
 
-    this._showAnimation();
+    // The details may have been closed while loading
+    if (this._isExpanded()) {
+      this._showAnimation();
+    }
   }
   startSpinner(movieId) {
     if (this.id !== movieId) return;
@@ -104,25 +113,24 @@ export default class MovieDetails {
     `;
   }
   _showAnimation() {
+    // Cancel a pending hide, if the details are opened again during the closing animation
+    clearTimeout(this.hideTimer);
+    this._setExpanded(true);
     // Make details div visible
     this.element.classList.remove('d-none');
     // Then, add a little delay to make sure the animation will work
     setTimeout(() => {
-      this.expand.classList.add('d-none');
-      this.minimize.classList.remove('d-none');
       this.element.classList.remove('scale-animation-end');
       this.element.classList.add('scale-animation-begin');
     }, 10);
   }
   _hideAnimation() {
+    this._setExpanded(false);
     this.element.classList.add('scale-animation-end');
     this.element.classList.remove('scale-animation-begin');
-    this.expand.classList.remove('d-none');
-    this.minimize.classList.add('d-none');
     // Wait for the animation to end before hiding the div
-    setTimeout(() => {
+    this.hideTimer = setTimeout(() => {
       this.element.classList.add('d-none');
-      this.element.parentNode.scrollIntoView({behavior: 'smooth'});
     }, 300);
   }
 }
