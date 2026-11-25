@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="./video-camera.svg" alt="MovieFinder" width="160">
+  <img src="./.github/assets/video-camera.svg" alt="MovieFinder" width="160">
   <br>
   MovieFinder
   <br>
