@@ -38,6 +38,10 @@ describe('Search', function() {
     cy.get('[data-js=movie-list]').children().should('have.length', 20);
     cy.get('.loading').should('not.exist');
   });
+  it('sends the search text as typed, even with special characters', function() {
+    cy.get('[data-js=title]').clear().type('fast & furious #1');
+    cy.wait('@search').its('request.query').should('include', { query: 'fast & furious #1', page: '1' });
+  });
   it('warns when no movie is found', function() {
     cy.get('[data-js=title]').clear().type('1nonexistingmovie');
     cy.wait('@search');
