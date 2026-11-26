@@ -6,25 +6,28 @@ export default class API {
     this.language = language;
   }
 
-  _standardURL(endpoint) {
-    return `${this.baseURL}${endpoint}?api_key=${this.apiKey}&language=${this.language}`;
+  // URLSearchParams encodes every value, so characters like & # + in a search can't break the URL
+  _url(endpoint, params = {}) {
+    const url = new URL(`${this.baseURL}${endpoint}`);
+    url.search = new URLSearchParams({api_key: this.apiKey, language: this.language, ...params});
+    return url.toString();
   }
   inTheaters(page = 1) {
-    return `${this._standardURL('/movie/now_playing')}&page=${page}`;
+    return this._url('/movie/now_playing', {page});
   }
   genres() {
-    return this._standardURL('/genre/movie/list');
+    return this._url('/genre/movie/list');
   }
   search(title, page = 1) {
     if (title) {
-      return `${this._standardURL('/search/movie')}&query=${title}&page=${page}&include_adult=false`;
+      return this._url('/search/movie', {query: title, page, include_adult: false});
     }
     return this.inTheaters();
   }
-  movie(id) {
-    return this._standardURL(`/movie/${id}`);
+  movie(id, params = {}) {
+    return this._url(`/movie/${id}`, params);
   }
   movieDetails(id) {
-    return `${this.movie(id)}&append_to_response=videos,reviews,similar`;
+    return this.movie(id, {append_to_response: 'videos,reviews,similar'});
   }
 }
