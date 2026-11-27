@@ -48,3 +48,25 @@ describe('Search', function() {
     cy.get('.no-result').should('exist');
   });
 });
+
+describe('Search - pending search', function() {
+  beforeEach(function() {
+    mockTmdb();
+    // Control the search debounce
+    cy.clock(Date.now(), ['setTimeout', 'clearTimeout']);
+    cy.visit('/');
+    cy.wait('@inTheaters');
+    cy.get('[data-js=movie-list]').children().should('have.length', 20);
+  });
+  it('is cancelled when the home link is clicked', function() {
+    cy.get('[data-js=title]').type('bat');
+    cy.get('[data-js=home-link]').click();
+    cy.tick(500);
+
+    // In Theaters still loads more, and the search never ran
+    cy.scrollTo('bottom');
+    cy.wait('@inTheaters').its('request.query.page').should('eq', '2');
+    cy.get('[data-js=movie-list]').children().should('have.length', 40);
+    cy.get('@search.all').should('have.length', 0);
+  });
+});
