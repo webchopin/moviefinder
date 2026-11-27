@@ -78,6 +78,8 @@ export default class Controller {
     }
   }
   switchToInTheaters() {
+    // Cancel a search still waiting for the debounce, or it would run after going home
+    clearTimeout(store.state.searchTimer);
     store.state.loadingMore = false;
     store.initSearchState();
     store.state.searchInput = '';
