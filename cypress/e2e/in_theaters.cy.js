@@ -25,3 +25,20 @@ describe('In Theaters', function() {
     cy.get('.loading').should('not.exist');
   });
 });
+
+describe('In Theaters - end of the list', function() {
+  beforeEach(function() {
+    mockTmdb({ totalPages: 2 });
+    cy.visit('/');
+    cy.wait('@inTheaters');
+    cy.get('[data-js=movie-list]').children().should('have.length', 20);
+  });
+  it('says when there are no more movies', function() {
+    cy.get('[data-js=end-of-list]').should('not.be.visible');
+
+    cy.scrollTo('bottom');
+    cy.wait('@inTheaters');
+    cy.get('[data-js=movie-list]').children().should('have.length', 40);
+    cy.get('[data-js=end-of-list]').should('be.visible').and('contain', 'No more movies');
+  });
+});

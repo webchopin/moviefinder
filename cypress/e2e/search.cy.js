@@ -46,6 +46,7 @@ describe('Search', function() {
     cy.get('[data-js=title]').clear().type('1nonexistingmovie');
     cy.wait('@search');
     cy.get('.no-result').should('exist');
+    cy.get('[data-js=end-of-list]').should('not.be.visible');
   });
 });
 

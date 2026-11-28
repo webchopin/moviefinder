@@ -8,10 +8,14 @@ export default class Movies {
     store.pubsub.subscribe('moviesUpdated', () => this.render());
     store.pubsub.subscribe('moviesLoading', () => this.startSpinner());
     this.element = document.querySelector('[data-js=movie-list]');
+    this.endOfList = document.querySelector('[data-js=end-of-list]');
     this.movies = [];
   }
   render() {
-    this.movies = store.state.searchMode ? store.state.search.movies: store.state.inTheaters.movies;
+    const list = store.state.searchMode ? store.state.search : store.state.inTheaters;
+    this.movies = list.movies;
+    // Tell the user the list has ended, once its last page is shown
+    this.endOfList.hidden = this.movies.length === 0 || list.currentPage < list.totalPages;
     if (this.movies.length === 0) {
       this.element.innerHTML = '<div class="no-result">No movies found for this query...</div>';
     } else  {
@@ -28,6 +32,7 @@ export default class Movies {
       this.element.insertAdjacentHTML('afterend','<div class="loading"><div class="loader"></div></div>');
     } else {
       this.element.innerHTML = '';
+      this.endOfList.hidden = true;
       this.element.insertAdjacentHTML('beforebegin','<div class="loading"><div class="loader"></div></div>');
     }
   }
