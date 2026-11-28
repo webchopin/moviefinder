@@ -8,24 +8,24 @@ const movie = id => ({
     overview: `Overview of movie ${id}`,
 });
 
-const moviePage = (page, offset = 0) => ({
+const moviePage = (page, offset, totalPages) => ({
     page,
-    total_pages: 5,
+    total_pages: totalPages,
     results: Array.from({length: 20}, (_, i) => movie(offset + (page - 1) * 20 + i + 1)),
 });
 
-export function mockTmdb({ delay = 0 } = {}) {
+export function mockTmdb({ delay = 0, totalPages = 5 } = {}) {
     cy.intercept('GET', '**/genre/movie/list*', { genres : [{ id: 28, name: 'Action' }] }).as('genres');
 
     cy.intercept('GET', '**/movie/now_playing*', req => {
-        req.reply({ body: moviePage(Number(req.query.page)), delay });
+        req.reply({ body: moviePage(Number(req.query.page), 0, totalPages), delay });
     }).as('inTheaters');
 
     cy.intercept('GET', '**/search/movie*', req => {
         if (req.query.query === '1nonexistingmovie') {
             return req.reply({ page: 1, total_pages: 0, results: [] });
         }
-        req.reply({ body: moviePage(Number(req.query.page), 1000), delay });
+        req.reply({ body: moviePage(Number(req.query.page), 1000, totalPages), delay });
     }).as('search');
 
     cy.intercept('GET', /\/movie\/\d+\?/, {

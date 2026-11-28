@@ -104,6 +104,13 @@ body {
   font-size: .75rem;
 }
 
+/* End of the movie list */
+
+.end-of-list {
+  text-align: center;
+  margin: 1em 0 2em;
+}
+
 /* Page indicator: In Theaters|Results */
 
 .page {
